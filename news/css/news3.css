@@ -74,12 +74,6 @@ body {
     color: #2c3e50;
 }
 
-.article-content h2 img {
-    width: 20px;
-    height: 20px;
-    box-shadow: none;
-}
-
 .article-meta {
     font-size: 0.9em;
     color: #777;
@@ -90,7 +84,7 @@ body {
     margin-right: 15px;
 }
 
-.article-body {
+.article-content p {
     text-align: justify;
     height: 105px;
     overflow: hidden;

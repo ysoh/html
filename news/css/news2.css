@@ -38,19 +38,16 @@ body {
     background-color: #f9f9f9;
     box-sizing: border-box;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Add transition for smooth effect */
 }
 
 .article:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    /* Add a stronger shadow on hover */
 }
 
 .article-image {
     margin-bottom: 15px;
     width: 100%;
     height: 250px;
-    /* Fixed height for all images to maintain 3:2 aspect ratio with 450px width */
     overflow: hidden;
 }
 
@@ -62,24 +59,15 @@ body {
     border-radius: 5px;
 }
 
-.article-content {
-    flex-grow: 1;
-}
-
 .article-content h2 {
     color: #0056b3;
     margin-top: 0;
     font-size: 1.2em;
     white-space: nowrap;
-    /* Prevent text from wrapping */
     overflow: hidden;
-    /* Hide overflowed content */
     text-overflow: ellipsis;
-    /* Display ellipsis (...) for overflowed text */
     max-width: 100%;
-    /* Ensure the h2 does not exceed its parent's width */
     text-align: center;
-    /* Center align the title */
 }
 
 .article-content h2 a {
@@ -91,27 +79,18 @@ body {
     text-decoration: underline;
 }
 
-.article-content h2 img {
-    width: 16px;
-    height: 16px;
-    box-shadow: none;
-}
-
 .article-meta {
     font-size: 0.8em;
     color: #666;
     margin-bottom: 10px;
     text-align: right;
-    /* Align text to the right */
 }
 
 .article-meta span {
     margin-left: 15px;
-    /* Add margin to the left instead of right */
 }
 
-.article-body {
+.article-content p {
     font-size: 0.9em;
-    /* Increased from 0.9em to 1em for slightly larger text */
     text-align: justify;
 }
