@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>인공지능</h1>
+        <ol id="ai-list">
+
+        </ol>
+    </div>
+    <script>
+        let aiList = [
+            { name: "챗GPT", company: "오픈AI", url: "https://chatgpt.com/" },
+            { name: "제미나이", company: "구글", url: "https://gemini.google.com/" },
+            { name: "코파일럿", company: "마이크로소프트", url: "https://copilot.microsoft.com/" },
+            { name: "클로드", company: "앤트로픽", url: "https://claude.ai/" },
+            { name: "그록", company: "xAI 홀딩스", url: "https://grok.com/" },
+            { name: "퍼플렉시티", company: "퍼플렉시티", url: "https://www.perplexity.ai/" },
+            { name: "딥시크", company: "딥시크", url: "https://www.deepseek.com/en" }
+        ];
+        let olElement = document.getElementById("ai-list");
+
+        for(let ai of aiList) {
+            let liElement = document.createElement("li");
+            let aElement = document.createElement("a");
+            aElement.href = ai.url;
+            aElement.textContent = `${ai.name} (${ai.company})`;
+            liElement.appendChild(aElement);
+            olElement.appendChild(liElement);
+        }
+    </script>
+</body>
+</html>

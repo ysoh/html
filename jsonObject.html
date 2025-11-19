@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>인공지능</h1>
+        <ol id="ai-list">
+
+        </ol>
+    </div>
+    <script>
+        let obj;
+        let olElement = document.getElementById("ai-list");
+        let li = '';
+
+        fetch('jsonObjects.txt')
+            .then(response => response.json())
+            .then(data => {
+                obj = data;
+                obj.aiList.forEach(function(ai) {
+                    li += `<li><a href="${ai.url}">${ai.name} (${ai.company})</a></li>`;
+                });
+                olElement.innerHTML = li;
+            });
+    </script>
+</body>
+</html>

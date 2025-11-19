@@ -1,0 +1,11 @@
+{
+    "aiList": [
+        { "name": "챗GPT", "company": "오픈AI", "url": "https://chatgpt.com/" },
+        { "name": "제미나이", "company": "구글", "url": "https://gemini.google.com/" },
+        { "name": "코파일럿", "company": "마이크로소프트", "url": "https://copilot.microsoft.com/" },
+        { "name": "클로드", "company": "앤트로픽", "url": "https://claude.ai/" },
+        { "name": "그록", "company": "xAI 홀딩스", "url": "https://grok.com/" },
+        { "name": "퍼플렉시티", "company": "퍼플렉시티", "url": "https://www.perplexity.ai/" },
+        { "name": "딥시크", "company": "딥시크", "url": "https://www.deepseek.com/en" }
+    ]
+}
