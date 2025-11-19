@@ -1,0 +1,204 @@
+/* 전체 스타일 및 밝은 모드 설정 */
+:root {
+    --main-bg-color: #f5f7fa;
+    /* 매우 밝은 배경 (거의 흰색) */
+    --text-color: #1e2a4a;
+    /* 짙은 남색 텍스트 */
+    --card-bg-color: #ffffff;
+    /* 흰색 카드 배경 */
+    --accent-color: #007bff;
+    /* 밝고 전문적인 파란색 포인트 */
+    --light-gray: #6c757d;
+    /* 회색 보조 텍스트 */
+    --border-color: #dee2e6;
+    /* 옅은 경계선 색상 */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    /* 한국어에 최적화된 폰트 */
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    /* 행간 축소 */
+    padding-bottom: 50px;
+}
+
+/* 헤더 스타일 */
+.main-header {
+    text-align: center;
+    padding: 50px 20px;
+    /* 상하 여백 축소 */
+    background: var(--card-bg-color);
+    border-bottom: 3px solid var(--accent-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.main-header h1 {
+    font-size: 2.5em;
+    margin-bottom: 8px;
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+.main-header p {
+    font-size: 1.1em;
+    color: var(--light-gray);
+}
+
+/* 메인 컨테이너 (반응형 그리드) */
+.container {
+    max-width: 1100px;
+    /* 너비 약간 축소 */
+    margin: 30px auto;
+    /* 상하 여백 축소 */
+    padding: 0 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    /* 간격 축소 */
+}
+
+/* 기술 카드 스타일 (높이 최적화) */
+.tech-card {
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    /* 카드 내부 패딩 대폭 축소 (높이 개선) */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.tech-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.tech-title {
+    font-size: 1.6em;
+    color: var(--accent-color);
+    margin-bottom: 3px;
+    /* 여백 축소 */
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.tech-description {
+    color: var(--light-gray);
+    font-style: italic;
+    margin-bottom: 10px;
+    /* 여백 축소 */
+    font-size: 0.9em;
+}
+
+/* ⭐ 이미지 컨테이너 및 이미지 스타일 ⭐ */
+.tech-image-container {
+    text-align: center;
+    margin-bottom: 15px;
+    /* 여백 축소 */
+    margin-top: 10px;
+    /* 여백 축소 */
+}
+
+.tech-logo {
+    max-width: 80px;
+    /* 이미지 크기 축소 */
+    height: auto;
+    border-radius: 50%;
+    /* 원형 로고 */
+    border: 3px solid var(--accent-color);
+}
+
+
+.tech-content {
+    flex-grow: 1;
+}
+
+.tech-content p {
+    margin-bottom: 10px;
+    /* 본문 단락 아래 여백 축소 (높이 개선) */
+    color: var(--text-color);
+    font-size: 0.95em;
+}
+
+/* 기술 카드 리스트 스타일 */
+.tech-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 5px;
+    /* 리스트 위 여백 축소 */
+}
+
+.tech-content li {
+    background-color: var(--main-bg-color);
+    /* 리스트 배경색 변경 */
+    padding: 6px 10px;
+    /* 리스트 항목 내부 패딩 대폭 축소 (높이 개선) */
+    margin-bottom: 5px;
+    /* 항목 간 여백 축소 */
+    border-left: 4px solid var(--accent-color);
+    border-radius: 4px;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+}
+
+.tech-content li:hover {
+    background-color: #e9ecef;
+}
+
+/* 새로 추가된 항목 강조 스타일 (클래스 이름: dev-field 유지) */
+.tech-content li.dev-field {
+    background-color: var(--accent-color);
+    /* 파란색 배경 */
+    color: var(--card-bg-color);
+    /* 흰색 텍스트 */
+    font-weight: 600;
+    margin-top: 10px;
+    /* 여백 축소 */
+    border-radius: 4px;
+    padding: 8px 10px;
+    /* 패딩 축소 */
+    text-align: center;
+    border-left: none;
+}
+
+.tech-content li.dev-field:hover {
+    background-color: #0056b3;
+}
+
+/* 푸터 스타일 */
+.main-footer {
+    text-align: center;
+    padding: 15px;
+    background-color: var(--card-bg-color);
+    color: var(--light-gray);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.85em;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* 미디어 쿼리: 작은 화면에서는 푸터 고정 해제 */
+@media (max-width: 768px) {
+    .main-footer {
+        position: static;
+        margin-top: 20px;
+    }
+}
+
+/* 텍스트 강조를 위한 스타일 */
+.tech-content p strong {
+    color: var(--accent-color);
+    font-weight: 700;
+}

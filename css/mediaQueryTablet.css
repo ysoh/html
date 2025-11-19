@@ -1,0 +1,12 @@
+.card {
+    background-color: skyblue;
+}
+
+.grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+header {
+    flex-direction: row;
+    justify-content: space-between;
+}

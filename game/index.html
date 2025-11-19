@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게임 스피어 (Game Sphere) - 메인</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo">🎮 게임 스피어</a>
+            
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="#news">게임 뉴스</a></li>
+                    <li><a href="#reviews">게임 리뷰</a></li>
+                    <li><a href="#gamers">게이머 & 팀</a></li>
+                    <li><a href="#">공략</a></li>
+                    <li><a href="#">커뮤니티</a></li>
+                    <li><a href="#upcoming">출시 일정</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-auth">
+                <a href="#">검색</a>
+                <a href="#">로그인</a>
+                <a href="#" class="btn btn-register">회원가입</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>새로운 차원의 게임 세계를 탐험하세요.</h1>
+                <p>가장 빠르고 정확한 게임 소식, 심층 리뷰, 그리고 당신의 전략을 완성할 공략까지.</p>
+                <div class="hero-buttons">
+                    <a href="#news" class="btn btn-primary">최신 뉴스 보기</a>
+                    <a href="#reviews" class="btn btn-secondary">인기 리뷰 살펴보기</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="news" class="content-section">
+            <h2>🔥 최신 게임 소식</h2>
+            <div class="grid-container">
+                <article class="card">
+                    <img src="news1.png" alt="뉴스 썸네일 1">
+                    <div class="card-content">
+                        <h3>신작 '이터널 프론티어' OBT 일정 공개!</h3>
+                        <p>차세대 MMORPG로 기대를 모으는 '이터널 프론티어'의 오픈 베타 테스트가 다음 달 시작됩니다...</p>
+                        <span class="date">2025년 11월 8일</span>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="news2.png" alt="뉴스 썸네일 2">
+                    <div class="card-content">
+                        <h3>'사이버 섀도우' 대규모 1.5 패치 노트</h3>
+                        <p>새로운 지역 '네온 디스트릭트'와 신규 클래스 '테크맨서'가 추가되었습니다. 자세한 패치...</p>
+                        <span class="date">2025년 11월 7일</span>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="news3.png" alt="뉴스 썸네일 3">
+                    <div class="card-content">
+                        <h3>e스포츠 'GSL' 결승전, 역대급 명승부 연출</h3>
+                        <p>'Flash' 선수가 'Rogue' 선수를 상대로 4:3 풀세트 접전 끝에 극적인 우승을 차지했습니다.</p>
+                        <span class="date">2025년 11월 6일</span>
+                    </div>
+                </article>
+            </div>
+            <div class="more-link">
+                <a href="#" class="btn btn-secondary">모든 뉴스 보기 ></a>
+            </div>
+        </section>
+
+        <section id="reviews" class="content-section bg-darker">
+            <h2>✨ 에디터 추천 리뷰</h2>
+            <div class="grid-container">
+                <article class="card review-card">
+                    <img src="game1.png" alt="게임 커버 1">
+                    <div class="card-content">
+                        <h3>발할라의 그림자</h3>
+                        <div class="rating">9.5 / 10</div>
+                        <p>북유럽 신화를 배경으로 한 압도적인 비주얼과 깊이 있는 스토리텔링.</p>
+                    </div>
+                </article>
+                <article class="card review-card">
+                    <img src="game2.png" alt="게임 커버 2">
+                    <div class="card-content">
+                        <h3>네온 시티 레이서</h3>
+                        <div class="rating">8.0 / 10</div>
+                        <p>화려한 네온사인 속을 질주하는 쾌감! 아케이드 레이싱의 정수.</p>
+                    </div>
+                </article>
+                <article class="card review-card">
+                    <img src="game3.png" alt="게임 커버 3">
+                    <div class="card-content">
+                        <h3>크로니클 택틱스 2</h3>
+                        <div class="rating">9.0 / 10</div>
+                        <p>전략 RPG 팬이라면 놓칠 수 없는 수작. 수많은 선택지가 당신을 기다린다.</p>
+                    </div>
+                </article>
+            </div>
+            <div class="more-link">
+                <a href="#" class="btn btn-secondary">전체 리뷰 보기 ></a>
+            </div>
+        </section>
+
+        <section id="gamers" class="content-section">
+            <h2>🌟 이 주의 게이머/팀</h2>
+            <div class="grid-container">
+                <article class="card gamer-card">
+                    <img src="gamer1.jpg" alt="게이머 프로필 사진 1">
+                    <div class="card-content">
+                        <h3>Faker (페이커)</h3>
+                        <p>e스포츠 (LoL)</p>
+                    </div>
+                </article>
+                <article class="card gamer-card">
+                    <img src="team1.jpg" alt="팀 로고">
+                    <div class="card-content">
+                        <h3>T1</h3>
+                        <p>e스포츠 팀 (LoL)</p>
+                    </div>
+                </article>
+                <article class="card gamer-card">
+                    <img src="gamer2.jpg" alt="스트리머 프로필 사진">
+                    <div class="card-content">
+                        <h3>우왁굳</h3>
+                        <p>스트리머 / 크리에이터</p>
+                    </div>
+                </article>
+            </div>
+            <div class="more-link">
+                <a href="#" class="btn btn-secondary">모든 게이머/팀 보기 ></a>
+            </div>
+        </section>
+
+        <section id="upcoming" class="content-section bg-darker">
+            <h2>🗓️ 곧 만날 수 있는 게임들</h2>
+            <ul class="upcoming-list">
+                <li>
+                    <span class="date">2025. 11. 15</span>
+                    <span class="title">스타더스트 오디세이</span>
+                    <span class="genre">우주 탐험 RPG</span>
+                </li>
+                <li>
+                    <span class="date">2025. 11. 28</span>
+                    <span class="title">코드네임: 퀀텀</span>
+                    <span class="genre">FPS</span>
+                </li>
+                <li>
+                    <span class="date">2025. 12. 05</span>
+                    <span class="title">에이지 오브 드래곤 4</span>
+                    <span class="genre">판타지 전략</span>
+                </li>
+            </ul>
+            <div class="more-link">
+                <a href="#" class="btn btn-secondary">전체 출시 일정 보기 ></a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <a href="index.html" class="logo">🎮 게임 스피어</a>
+                <p>&copy; 2025 Game Sphere. All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">회사 소개</a>
+                <a href="#">이용 약관</a>
+                <a href="#">개인정보처리방침</a>
+                <a href="#">사이트맵</a>
+                <a href="#">고객센터</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+/* ====== 기본 설정 ====== */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f9fafb;
+    color: #222;
+    line-height: 1.7;
+    padding: 40px 20px;
+}
+
+/* ====== 메인 컨테이너 ====== */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    padding: 40px 50px;
+}
+
+/* ====== 제목 스타일 ====== */
+#site-title {
+    text-align: center;
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #1a73e8;
+    border-bottom: 3px solid #1a73e8;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* ====== 각 기사(article) ====== */
+.article {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-bottom: 50px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 30px;
+    gap: 20px;
+}
+
+.article:last-child {
+    border-bottom: none;
+}
+
+/* ====== 이미지 영역 ====== */
+.article-image {
+    flex: 0 0 180px;
+    text-align: center;
+}
+
+.article-image img {
+    width: 160px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ====== 본문 영역 ====== */
+.article-content {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* 제목 및 링크 */
+.article-content h2 {
+    font-size: 1.4rem;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.article-content h2 a {
+    text-decoration: none;
+    color: #1a73e8;
+    transition: color 0.3s;
+}
+
+.article-content h2 a:hover {
+    color: #0c47a1;
+}
+
+/* 메타 정보 */
+.article-meta {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.article-meta span {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+/* 본문 텍스트 */
+.article-content p {
+    font-size: 1rem;
+    text-align: justify;
+    color: #333;
+}
+
+/* 강조 텍스트 처리 */
+.article-content strong,
+.article-content b {
+    color: #1a73e8;
+}
+
+/* ====== 반응형 디자인 ====== */
+@media (max-width: 768px) {
+    .container {
+        padding: 30px 20px;
+    }
+
+    .article {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .article-image img {
+        width: 120px;
+        margin-bottom: 15px;
+    }
+
+    #site-title {
+        font-size: 2rem;
+    }
+}

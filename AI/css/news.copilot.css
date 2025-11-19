@@ -1,0 +1,106 @@
+/* css/news.copilot.css */
+
+body {
+    font-family: 'Segoe UI', 'Apple SD Gothic Neo', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+#site-title {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 50px;
+    color: #2c3e50;
+    border-bottom: 3px solid #3498db;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.article {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    margin-bottom: 30px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.article:hover {
+    transform: translateY(-4px);
+}
+
+.article-image {
+    flex: 1 1 200px;
+    max-width: 200px;
+    background-color: #ecf0f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.article-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.article-content {
+    flex: 3 1 0;
+    padding: 20px 30px;
+}
+
+.article-content h2 {
+    margin-top: 0;
+    font-size: 1.6rem;
+    color: #2980b9;
+}
+
+.article-content h2 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.article-content h2 a:hover {
+    text-decoration: underline;
+}
+
+.article-meta {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 15px;
+}
+
+.article-meta span {
+    margin-right: 20px;
+}
+
+.article-content p {
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .article {
+        flex-direction: column;
+    }
+
+    .article-image,
+    .article-content {
+        max-width: 100%;
+        flex: 1 1 100%;
+    }
+
+    .article-content {
+        padding: 20px;
+    }
+}
