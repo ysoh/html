@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Space Warp (Fixed)</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Courier New', Courier, monospace;
+            user-select: none;
+            /* 텍스트 선택 방지 */
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* UI 오버레이 */
+        .overlay {
+            position: relative;
+            z-index: 10;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            pointer-events: none;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            text-shadow: 0 0 15px #0ff, 0 0 30px #00f;
+            transition: opacity 1s;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 100;
+        }
+
+        p {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* 오디오 컨트롤 영역 */
+        #audio-control-container {
+            position: absolute;
+            bottom: 40px;
+            z-index: 100;
+            /* z-index를 아주 높게 설정 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            pointer-events: none;
+            /* 컨테이너 자체는 클릭 통과 */
+        }
+
+        .start-message {
+            color: #0ff;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            animation: blink 2s infinite;
+            pointer-events: auto;
+        }
+
+        /* 버튼 스타일 */
+        .switch-btn {
+            background: rgba(0, 20, 40, 0.8);
+            border: 2px solid #0ff;
+            color: #0ff;
+            padding: 12px 30px;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 30px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            pointer-events: auto;
+            /* 버튼은 클릭 가능 */
+        }
+
+        .switch-btn:hover {
+            background: rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+            transform: scale(1.05);
+        }
+
+        .switch-btn:active {
+            transform: scale(0.95);
+        }
+
+        .switch-btn.muted {
+            border-color: #555;
+            color: #888;
+            box-shadow: none;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .icon {
+            font-size: 1.2rem;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <audio id="bgmAudio" loop preload="auto"
+        src="https://cdn.pixabay.com/download/audio/2022/03/09/audio_d611357920.mp3?filename=space-atmosphere-2805.mp3"></audio>
+    <audio id="engineAudio" loop preload="auto"
+        src="https://cdn.pixabay.com/download/audio/2022/10/14/audio_8623814807.mp3?filename=spaceship-cruising-ufo-7185.mp3"></audio>
+
+    <div class="overlay" id="mainOverlay">
+        <h1>Deep Space Warp</h1>
+        <p>Sector 7G - Unknown</p>
+    </div>
+
+    <canvas id="spaceCanvas"></canvas>
+
+    <div id="audio-control-container">
+        <div class="start-message" id="startMsg">CLICK BUTTON TO ENGAGE</div>
+        <button id="muteToggle" class="switch-btn muted">
+            <span class="icon">🔇</span> <span class="text">AUDIO OFF</span>
+        </button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('spaceCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // --- 설정 ---
+        let width, height, centerX, centerY;
+        let speed = 0.1;
+        const numStars = 1000;
+        const stars = [];
+        const planets = [];
+        const numPlanets = 6;
+
+        const starColors = ['#ffffff', '#ffe9c4', '#d4fbff', '#ffb3ba', '#baffc9', '#e6e6fa'];
+        const planetColors = [
+            { base: '#ff4500', glow: 'rgba(255, 69, 0, 0.2)' },
+            { base: '#4169e1', glow: 'rgba(65, 105, 225, 0.2)' },
+            { base: '#3cb371', glow: 'rgba(60, 179, 113, 0.2)' },
+            { base: '#9370db', glow: 'rgba(147, 112, 219, 0.2)' }
+        ];
+
+        // --- 오디오 변수 ---
+        const bgm = document.getElementById('bgmAudio');
+        const engine = document.getElementById('engineAudio');
+        const muteBtn = document.getElementById('muteToggle');
+        const startMsg = document.getElementById('startMsg');
+        const btnIcon = muteBtn.querySelector('.icon');
+        const btnText = muteBtn.querySelector('.text');
+
+        let isAudioInitialized = false; // 오디오가 한번이라도 실행 시도되었는지
+        let isMuted = true;
+
+        // --- 캔버스 초기화 ---
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            centerX = width / 2;
+            centerY = height / 2;
+        }
+
+        // --- 클래스 정의 ---
+        class SpaceObject {
+            constructor() { this.reset(true); }
+            reset(initial = false) {
+                this.x = (Math.random() - 0.5) * width * (initial ? 4 : 2);
+                this.y = (Math.random() - 0.5) * height * (initial ? 4 : 2);
+                this.z = Math.random() * width;
+            }
+            update() {
+                this.z -= speed * this.speedModifier;
+                if (this.z <= 0) this.reset();
+            }
+        }
+
+        class Star extends SpaceObject {
+            constructor() {
+                super();
+                this.speedModifier = 25;
+                this.color = starColors[Math.floor(Math.random() * starColors.length)];
+                this.pz = this.z;
+            }
+            update() {
+                super.update();
+                if (this.z > this.pz) this.pz = this.z;
+            }
+            draw() {
+                const sx = (this.x / this.z) * centerX + centerX;
+                const sy = (this.y / this.z) * centerY + centerY;
+                const px = (this.x / this.pz) * centerX + centerX;
+                const py = (this.y / this.pz) * centerY + centerY;
+                this.pz = this.z;
+                const r = (1 - this.z / width) * 3;
+
+                ctx.beginPath();
+                ctx.moveTo(px, py);
+                ctx.lineTo(sx, sy);
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = r;
+                ctx.stroke();
+            }
+        }
+
+        class Planet extends SpaceObject {
+            constructor() {
+                super();
+                this.speedModifier = Math.random() * 5 + 2;
+                this.radiusSize = Math.random() * 60 + 20;
+                const c = planetColors[Math.floor(Math.random() * planetColors.length)];
+                this.color = c.base;
+                this.glowColor = c.glow;
+            }
+            draw() {
+                const sx = (this.x / this.z) * centerX + centerX;
+                const sy = (this.y / this.z) * centerY + centerY;
+                const r = (1 - this.z / width) * this.radiusSize * (width / 1000);
+                if (r <= 0) return;
+
+                const g = ctx.createRadialGradient(sx, sy, r * 0.2, sx, sy, r);
+                g.addColorStop(0, this.color);
+                g.addColorStop(1, 'transparent');
+
+                ctx.fillStyle = g;
+                ctx.beginPath(); ctx.arc(sx, sy, r, 0, Math.PI * 2); ctx.fill();
+
+                ctx.fillStyle = this.glowColor;
+                ctx.beginPath(); ctx.arc(sx, sy, r * 1.5, 0, Math.PI * 2); ctx.fill();
+            }
+        }
+
+        // --- 초기화 ---
+        function init() {
+            resize();
+            window.addEventListener('resize', resize);
+            for (let i = 0; i < numStars; i++) stars.push(new Star());
+            for (let i = 0; i < numPlanets; i++) planets.push(new Planet());
+            animate();
+        }
+
+        function animate() {
+            ctx.fillStyle = "rgba(0, 5, 15, 0.5)";
+            ctx.fillRect(0, 0, width, height);
+
+            if (mouseActive) {
+                const xDist = Math.abs(mouseX - centerX);
+                const yDist = Math.abs(mouseY - centerY);
+                speed = 0.1 + ((xDist + yDist) / width) * 3.0;
+            }
+
+            // 볼륨 조절 (음소거 아닐 때만)
+            if (!isMuted && isAudioInitialized) {
+                engine.volume = Math.min(0.2 + (speed * 0.3), 1.0);
+            }
+
+            planets.forEach(p => { p.update(); p.draw(); });
+            stars.forEach(s => { s.update(); s.draw(); });
+            requestAnimationFrame(animate);
+        }
+
+        let mouseX, mouseY, mouseActive = false;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            mouseActive = true;
+        });
+
+        // ==========================================
+        // [수정됨] 버튼 클릭 이벤트 로직
+        // ==========================================
+        muteBtn.addEventListener('click', () => {
+            // 1. 첫 실행인 경우 (브라우저 정책 대응)
+            if (!isAudioInitialized) {
+                isAudioInitialized = true;
+                isMuted = false; // 소리 켬
+
+                // 오디오 재생 시도 (Promise 에러가 나도 UI는 멈추지 않음)
+                bgm.volume = 0.4;
+                engine.volume = 0.2;
+                bgm.play().catch(e => console.log('Audio Error:', e));
+                engine.play().catch(e => console.log('Audio Error:', e));
+
+                // UI 즉시 업데이트 (기다리지 않음)
+                startMsg.style.display = 'none';
+                document.getElementById('mainOverlay').style.opacity = 0.5;
+                updateButtonState();
+                return;
+            }
+
+            // 2. 토글 기능 (이후 클릭)
+            isMuted = !isMuted;
+
+            if (isMuted) {
+                bgm.muted = true;
+                engine.muted = true;
+            } else {
+                // 혹시 멈춰있으면 다시 재생 시도
+                bgm.muted = false;
+                engine.muted = false;
+                if (bgm.paused) bgm.play().catch(e => { });
+                if (engine.paused) engine.play().catch(e => { });
+            }
+
+            updateButtonState();
+        });
+
+        function updateButtonState() {
+            if (isMuted) {
+                muteBtn.classList.add('muted');
+                btnIcon.textContent = '🔇';
+                btnText.textContent = 'AUDIO OFF';
+            } else {
+                muteBtn.classList.remove('muted');
+                btnIcon.textContent = '🔊';
+                btnText.textContent = 'AUDIO ON';
+            }
+        }
+
+        init();
+
+    </script>
+</body>
+
+</html>

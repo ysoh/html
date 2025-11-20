@@ -1,0 +1,67 @@
+export const categories = [
+  {
+    title: "학교사이트",
+    id: "school",
+    links: [
+      { name: "안산대학교", url: "https://www.ansan.ac.kr", icon: "🏫" },
+      { name: "컴퓨터정보학과", url: "https://info.ansan.ac.kr", icon: "💻" },
+      { name: "안산대학교이클래스", url: "https://eclass.ansan.ac.kr", icon: "📚" },
+      { name: "Microsoft Office 365", url: "https://o365.ansan.ac.kr", icon: "☁️" },
+    ],
+  },
+  {
+    title: "실습서버",
+    id: "practice",
+    links: [
+      { name: "웹사이트제작(과제물)", url: "https://infognu.ansan.ac.kr/reports/?s=html", icon: "🌐" },
+      { name: "자바스크립트(과제물)", url: "https://infognu.ansan.ac.kr/reports/?s=javascript", icon: "⚡" },
+      { name: "웹프로그래밍(과제물)", url: "https://infognu.ansan.ac.kr/reports/?s=webprog", icon: "🖥️" },
+      { name: "웹DB프로그래밍(과제물)", url: "https://infognu.ansan.ac.kr/reports/?s=webdb", icon: "🗄️" },
+      { name: "데이터베이스응용(과제물)", url: "https://infognu.ansan.ac.kr/reports/?s=database", icon: "📊" },
+      { name: "졸업작품(과제물)", url: "https://infognu.ansan.ac.kr/portfolio", icon: "🎓" },
+      { name: "MySQL(MariaDB) 실습", url: "https://infognu.ansan.ac.kr/pma/infodb", icon: "🐬" },
+      { name: "PostgreSQL 실습", url: "https://infognu.ansan.ac.kr/pgadmin4", icon: "🐘" },
+    ],
+  },
+  {
+    title: "개발",
+    id: "dev",
+    links: [
+      { name: "Javascript", url: "https://ko.javascript.info", icon: "📜" },
+      { name: "React", url: "https://ko.react.dev", icon: "⚛️" },
+      { name: "Angular", url: "https://angular.io", icon: "🅰️" },
+      { name: "Vue.js", url: "https://vuejs.org", icon: "🟢" },
+      { name: "jQuery", url: "https://www.jquery.com", icon: "💲" },
+      { name: "Node.js", url: "https://nodejs.org/ko", icon: "🟩" },
+      { name: "JSFiddle", url: "https://jsfiddle.net/", icon: "🎻" },
+      { name: "Apache", url: "https://www.apache.org", icon: "🪶" },
+      { name: "PHP", url: "https://www.php.net", icon: "🐘" },
+      { name: "XAMPP", url: "https://www.apachefriends.org/index.html", icon: "❌" },
+      { name: "AMPPS", url: "https://www.ampps.com", icon: "🅰️" },
+    ],
+  },
+  {
+    title: "데이터베이스",
+    id: "db",
+    links: [
+      { name: "MySQL", url: "https://www.mysql.com", icon: "🐬" },
+      { name: "MariaDB", url: "https://www.mariadb.org", icon: "🦭" },
+      { name: "PostgreSQL", url: "https://www.postgresql.org", icon: "🐘" },
+      { name: "Oracle", url: "https://www.oracle.com/kr/database/technologies/", icon: "🔴" },
+      { name: "SQL Server", url: "https://www.microsoft.com/ko-kr/sql-server/", icon: "🪟" },
+      { name: "DB2", url: "https://www.ibm.com/kr-ko/products/db2", icon: "🟦" },
+      { name: "CUBRID", url: "https://www.cubrid.com/", icon: "🧊" },
+      { name: "DBeaver", url: "https://dbeaver.io/", icon: "🦦" },
+    ],
+  },
+  {
+    title: "참고사이트",
+    id: "ref",
+    links: [
+      { name: "www.happyfam.or.kr/ysoh", url: "https://www.happyfam.or.kr/ysoh", icon: "🏠" },
+      { name: "ysoh.tistory.com", url: "https://ysoh.tistory.com", icon: "📝" },
+      { name: "W3SCHOOLS", url: "https://www.w3schools.com", icon: "🏫" },
+      { name: "MDN(Mozilla)", url: "https://developer.mozilla.org/ko/", icon: "🦖" },
+    ],
+  },
+];
